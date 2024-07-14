@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 // const cors = require("cors");
 const { connection } = require("./Config/db");
 const { userRouter } = require("./Routes/User.route");
@@ -6,11 +7,12 @@ const { productRouter } = require("./Routes/Product.route");
 const { authentication } = require("./Middleware/Authentication");
 const { cartRouter } = require("./Routes/Cart.route");
 const { orderRouter } = require("./Routes/Order.route");
+
 const app = express();
-const cors = require("cors");
-app.use(cors());
+
 app.use(express.json());
 app.use(cors());
+
 app.use("/user", userRouter);
 
 // app.use(authentication);
