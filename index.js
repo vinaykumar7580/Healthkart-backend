@@ -11,7 +11,14 @@ const { orderRouter } = require("./Routes/Order.route");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: false, 
+  optionsSuccessStatus: 204
+};
+app.use(cors(corsOptions));
 
 app.use("/user", userRouter);
 
