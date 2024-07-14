@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-// const cors = require("cors");
+
 const { connection } = require("./Config/db");
 const { userRouter } = require("./Routes/User.route");
 const { productRouter } = require("./Routes/Product.route");
@@ -12,21 +12,11 @@ const app = express();
 
 app.use(express.json());
 
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: false, 
-  optionsSuccessStatus: 204
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use("/user", userRouter);
-
-// app.use(authentication);
-// app.use("/product", productRouter);
-
-// app.use(authentication);
 app.use("/product", productRouter);
+
 app.use(authentication);
 
 app.use("/cart", cartRouter);
